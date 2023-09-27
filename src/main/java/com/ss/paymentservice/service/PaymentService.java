@@ -43,6 +43,19 @@ public class PaymentService {
         return null;
     }
 
+    public Payment updatePaymentByBookingNumber(Long bookingNumber, Payment payment) {
+        Optional<Payment> existingPaymentOptional = paymentRepository.findByBookingNumber(bookingNumber);
+        if (existingPaymentOptional.isPresent()) {
+            Payment existingPayment = existingPaymentOptional.get();
+            existingPayment.setPaymentAmount(payment.getPaymentAmount());
+            existingPayment.setBookingNumber(payment.getBookingNumber());
+            existingPayment.setPaymentDate(payment.getPaymentDate());
+            existingPayment.setPaymentStatus("done");
+            return paymentRepository.save(existingPayment);
+        }
+        return null;
+    }
+
     public void deletePayment(Long id) {
         paymentRepository.deleteById(id);
     }
