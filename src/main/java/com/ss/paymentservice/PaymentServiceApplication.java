@@ -14,7 +14,7 @@ public class PaymentServiceApplication {
 	public static void main(String[] args)
 	{
 		new SpringApplicationBuilder()
-				.profiles("dev")
+				.profiles("prod")
 				.sources(PaymentServiceApplication.class)
 				.run(args);
 	}
